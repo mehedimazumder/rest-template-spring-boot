@@ -60,7 +60,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .authenticationManager(authenticationManager).userDetailsService(userDetailsService)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE)
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH, HttpMethod.DELETE)
                 .tokenEnhancer(new CustomTokenEnhancer())
                 .exceptionTranslator(loggingExceptionTranslator())
                 //.tokenStore(inMemoryTokenStore());
