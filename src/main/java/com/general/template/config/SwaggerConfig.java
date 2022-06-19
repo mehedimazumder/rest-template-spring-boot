@@ -77,90 +77,12 @@ public class SwaggerConfig {
         return new SecurityConfiguration(clientId, clientSecret, "", "", "", ApiKeyVehicle.HEADER, "", " ");
     }
 
-//    @Bean
-//    public SecurityConfiguration security() {
-//        return SecurityConfigurationBuilder.builder()
-//                .clientId("omc-hrms-rest-client")
-//                .clientSecret("omc-hrms-rest-secret")
-//                .scopeSeparator(" ")
-//                .useBasicAuthenticationWithAccessCodeGrant(true)
-//                .build();
-//    }
-//
-//    private SecurityScheme securityScheme() {
-//        GrantType grantType = new AuthorizationCodeGrantBuilder()
-//                .tokenEndpoint(new TokenEndpoint(baseUrl + "/token", "oauthtoken"))
-//                .tokenRequestEndpoint(
-//                        new TokenRequestEndpoint(baseUrl + "/authorize", "omc-hrms-rest-client", "omc-hrms-rest-secret"))
-//                .build();
-//
-//        SecurityScheme oauth = new OAuthBuilder().name("spring_oauth")
-//                .grantTypes(Arrays.asList(grantType))
-//                .scopes(Arrays.asList(scopes()))
-//                .build();
-//        return oauth;
-//    }
-//
-//    private AuthorizationScope[] scopes() {
-//        AuthorizationScope[] scopes = {
-//                new AuthorizationScope("read", "for read operations"),
-//                new AuthorizationScope("write", "for write operations"),
-//                new AuthorizationScope("foo", "Access foo API") };
-//        return scopes;
-//    }
-//
-//    private SecurityContext securityContext() {
-//        return SecurityContext.builder()
-//                .securityReferences(
-//                        Arrays.asList(new SecurityReference("spring_oauth", scopes())))
-//                .forPaths(PathSelectors.regex("/foos.*"))
-//                .build();
-//    }
-
-//    @Bean
-//    public Docket swaggerAdminConfiguration() {
-//
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("admin")
-//                .select()
-//                .paths(PathSelectors.ant("/admin/*"))
-//                .apis(RequestHandlerSelectors.basePackage("com.sweetitech.hrm.controller.admin"))
-//                .build()
-//                .apiInfo(metadata());
-//    }
-
-
-
-//    @Bean
-//    public Docket swaggerAllConfiguration() {
-//
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("all")
-//                .select()
-//                .paths(PathSelectors.ant("/all/*"))
-//                .apis(RequestHandlerSelectors.basePackage("com.sweetitech.hrm"))
-//                .build()
-//                .apiInfo(metadata());
-//    }
-//
-//    @Bean
-//    public Docket swaggerOAuthConfiguration() {
-//
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("oauth")
-//                .select()
-//                .paths(PathSelectors.ant("/oauth/*"))
-//                .apis(RequestHandlerSelectors.basePackage("com.sweetitech.hrm"))
-//                .build()
-//                .apiInfo(metadata());
-//    }
-
     private ApiInfo metadata() {
         return new ApiInfoBuilder()
                 .title( "OMC HRMS" )
-                .description( "Api documentation for omc hrms." )
+                .description( "Api documentation for template." )
                 .version( "1.0.0" )
-                .contact(new Contact("Tasnim Ankon", "www.sweetitech.co.uk", "tasnim.ankon@gmail.com"))
+                .contact(new Contact("Mehedi H.", null, "mehedihm.cuet@outlook.com"))
                 .build();
     }
 }
