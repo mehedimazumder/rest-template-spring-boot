@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
-public class RedisServiceImpl {
+public class RedisService {
     private final RedisTemplate redisTemplate;
 
     public <T, V> void put(T key, V value){

@@ -1,6 +1,5 @@
 package com.general.template.service.implementation;
 
-import com.general.template.common.exception.BadRequestException;
 import com.general.template.domain.Movie;
 import com.general.template.domain.User;
 import com.general.template.domain.dto.MovieDTO;
@@ -10,20 +9,16 @@ import com.general.template.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
@@ -31,7 +26,8 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-    private final RedisServiceImpl redisService;
+    private final RedisService redisService;
+    private final AsyncService asyncService;
 
     @Override
     public MovieDTO save(MovieDTO dto, Long userId) throws Exception {
@@ -47,6 +43,17 @@ public class MovieServiceImpl implements MovieService {
         }else{
             movie = modelMapper.map(dto, Movie.class);
         }
+
+        // async
+        CompletableFuture<Object> employeeAddress = asyncService.getEmployeeEmail();
+        CompletableFuture<Object> employeeName = asyncService.getEmployeeName();
+
+        // Wait until they are all done
+        CompletableFuture.allOf(employeeAddress, employeeName);
+
+        employeeAddress.get();
+        employeeName.get();
+        //end
 
 //        redisService.put("MOVIE", movie.getTitle(), movie);
         redisService.put(movie.getImdbId(), movie);
