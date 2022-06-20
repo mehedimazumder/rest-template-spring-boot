@@ -4,6 +4,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
@@ -20,7 +21,7 @@ public class RedisConfig {
         redisStandaloneConfiguration.setPort(6379);
         //redisStandaloneConfiguration.setPassword("password");
 
-        return new JedisConnectionFactory(redisStandaloneConfiguration);
+        return new JedisConnectionFactory(redisStandaloneConfiguration, JedisClientConfiguration.builder().build());
     }
 
     @Bean

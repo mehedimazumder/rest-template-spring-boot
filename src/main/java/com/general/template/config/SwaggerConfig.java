@@ -79,7 +79,7 @@ public class SwaggerConfig {
 
     private ApiInfo metadata() {
         return new ApiInfoBuilder()
-                .title( "OMC HRMS" )
+                .title( "Template" )
                 .description( "Api documentation for template." )
                 .version( "1.0.0" )
                 .contact(new Contact("Mehedi H.", null, "mehedihm.cuet@outlook.com"))
